@@ -1,0 +1,22 @@
+@use '../abstracts/mixins' as *;
+@use '../abstracts/variables' as *;
+
+html {
+    overflow-x: hidden !important;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $font-family-base;
+    background-image: url('../images/pattern-curve.svg');
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    overflow-x: hidden;
+
+    @include tablet-mobile {
+        background-size: contain;
+    }
+}

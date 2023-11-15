@@ -1,0 +1,190 @@
+@use '../abstracts/mixins' as *;
+@use '../abstracts/variables' as *;
+
+.main-container {
+    @extend %wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+
+    @include laptop-m-styles {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+        padding-top: 4rem;
+        padding-bottom: 4.688rem;
+        margin-top: 2rem;
+    }
+
+    @include tablet-mobile {
+        margin-top: 0;
+    }
+
+    .main__text-box {
+        grid-column: 1 / 3;
+        grid-row: 1 / 2;
+        align-self: center;
+        z-index: 6;
+
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            background-image: url('../images/pattern-quotes.svg');
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+            left: 5.938rem;
+            top: -4rem;
+            transition: opacity 0.3s ease-in-out;
+
+            @include laptop-m-styles {
+                left: 50%;
+                top: -1rem;
+                transform: translate(-10%);
+            }
+
+            @include tablet-mobile {
+                background-size: contain;
+                transform: translate(-30%);
+                width: 30%;
+                height: 30%;
+            }
+        }
+
+        .text-box__text {
+            font-weight: $font-weight-light;
+            font-size: $font-size-base;
+            line-height: 44px;
+            color: $color-base;
+            width: 85%;
+            margin-bottom: 2rem;
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
+
+            @include laptop-m-styles {
+                width: 100%;
+            }
+
+            @include tablet-mobile {
+                font-size: $font-size-small;
+                line-height: 24px;
+            }
+
+        }
+
+        .text-box__author {
+            font-weight: $font-weight-bold;
+            color: $color-base;
+            line-height: 38px;
+            font-size: $font-size-medium;
+
+            @include laptop-m-styles {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            @include tablet-mobile {
+                font-size: $font-size-smaller;
+                line-height: 15px;
+                gap: 0.5rem;
+            }
+
+            .author-job {
+                font-weight: $font-weight-semi-bold;
+                color: $color-primary;
+                transition: opacity 0.3s ease-in-out;
+            }
+
+            .text-box__author-name {
+                transition: opacity 0.3s ease-in-out;
+            }
+        }
+    }
+
+    .main__img-box {
+        grid-column: 2 / 4;
+        grid-row: 1 / 2;
+        justify-self: end;
+        position: relative;
+        box-shadow: 0px 40px 50px -30px rgba(36, 36, 113, 0.495001);
+        background: transparent;
+        background-color: transparent;
+        z-index: 2;
+
+        @include laptop-m-styles {
+            margin-bottom: 5.5rem;
+            flex-shrink: 0;
+        }
+
+        @include tablet-mobile {
+            max-width: 356px;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            background-image: url('../images/pattern-bg.png');
+            background-repeat: no-repeat;
+            width: 130%;
+            height: 130%;
+            left: -4rem;
+            top: -4rem;
+            z-index: 1;
+
+            @include tablet-mobile {
+                background-size: contain;
+            }
+        }
+
+        .author-img {
+            border-radius: 5px;
+            position: relative;
+            transition: opacity 0.3s ease-in-out;
+            z-index: 4;
+
+        }
+
+        .slider {
+            position: absolute;
+            left: 3.875rem;
+            bottom: 0;
+            transform: translateY(50%);
+            z-index: 5;
+
+            display: flex;
+            align-items: center;
+
+            @include laptop-m-styles {
+                left: 50%;
+                transform: translate(-50%, 50%);
+            }
+
+            .previous,
+            .next {
+                background-color: #ffffff;
+                padding: 1.188rem 1.375rem;
+                transition: all 200ms ease-in-out;
+                border: none;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #f3f3f3;
+                }
+            }
+
+            .previous {
+                border-bottom-left-radius: 100ch;
+                border-top-left-radius: 100ch;
+            }
+
+            .next {
+                border-bottom-right-radius: 100ch;
+                border-top-right-radius: 100ch;
+            }
+        }
+    }
+}
